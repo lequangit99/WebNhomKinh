@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 
-namespace ShopBanDoTheThao.Models
+namespace WebNhomKinh.Models
 {
     public class MailHelper
     {

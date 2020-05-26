@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using PagedList;
 
-namespace ShopBanDoTheThao.Models
+namespace WebNhomKinh.Models
 {
     public class QuanLyHangSX
     {

@@ -2,7 +2,7 @@
 @using System.Collections.Generic
 @using System.Drawing
 @using System.Linq
-@using ShopBanDoTheThao.Models
+@using WebNhomKinh.Models
 @{
     ShopEntities shop = new ShopEntities();
     var chuyenMucChinh = shop.ChuyenMucs.Where(c => c.MaChuyenMucCha == null && c.DacBiet == false).ToList();

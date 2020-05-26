@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ShopBanDoTheThao.Models
+namespace WebNhomKinh.Models
 {
     public class ShoppingCart
     {

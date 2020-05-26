@@ -5,11 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-using ShopBanDoTheThao.Models;
+using WebNhomKinh.Models;
 using System.Configuration;
 using System.Net.Mail;
 
-namespace ShopBanDoTheThao.Controllers
+namespace WebNhomKinh.Controllers
 {
     public class GioHangController : Controller
     {
@@ -135,11 +135,11 @@ namespace ShopBanDoTheThao.Controllers
             tam += string.Format("<tr><td colspan=4  style='border:thin solid gray;color:blue'><b>VAT </b></td><td align='right' style='border:thin solid gray'>{0:#,##0}</td></tr>", vat);
             tam += string.Format("<tr><td colspan=4  style='border:thin solid gray; color:red'><b>Tổng tiền: </b></td><td align='right' style='border:thin solid gray'>{0:#,##0}</td></tr>", thanhtoan1);
             //gui email:
-            string senderID = "hamanhdat1996@gmail.com";
-            string senderPassword = "ouwarorieghbwyfk";
+            string senderID = "lequang.hs99@gmail.com";
+            string senderPassword = "le.quang.99.gmail";
 
             tam += "</table>";
-            string body = " " + hoadon.TenKH + " Đã được gửi mail từ website cửa kính Thiên Phú";
+            string body = " " + hoadon.TenKH + " Đã được gửi mail từ website cửa kính";
             body += "Phone : " + hoadon.SDT + "<br>";
             body += "Chi tiết hóa đơn<br>";
             body += tam;
@@ -148,7 +148,7 @@ namespace ShopBanDoTheThao.Controllers
                 MailMessage mail = new MailMessage();
                 mail.To.Add(hoadon.Email);
                 mail.From = new MailAddress(senderID);
-                mail.Subject = "Xác nhận hóa đơn hàng công ty cửa Thiên Phú!";
+                mail.Subject = "Xác nhận hóa đơn hàng công ty cửa HTĐQ";
                 mail.Body = body;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();

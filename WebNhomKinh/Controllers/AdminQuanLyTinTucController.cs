@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using PagedList;
-using ShopBanDoTheThao.Models;
+using WebNhomKinh.Models;
 
-namespace ShopBanDoTheThao.Controllers
+namespace WebNhomKinh.Controllers
 {
     public class AdminQuanLyTinTucController : Controller
     {

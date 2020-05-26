@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ShopBanDoTheThao.Controllers
+namespace WebNhomKinh.Controllers
 {
     public class ThongKeController : Controller
     {

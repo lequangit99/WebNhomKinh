@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShopBanDoTheThao.Models
+namespace WebNhomKinh.Models
 {
     using System;
     using System.Collections.Generic;

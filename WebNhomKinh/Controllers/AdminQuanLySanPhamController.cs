@@ -9,10 +9,10 @@ using System.Web.Mvc;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ShopBanDoTheThao.Models;
+using WebNhomKinh.Models;
 using PagedList;
 
-namespace ShopBanDoTheThao.Controllers
+namespace WebNhomKinh.Controllers
 {
     public class AdminQuanLySanPhamController : Controller
     {

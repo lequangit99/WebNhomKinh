@@ -87,3 +87,4 @@ D:\DATN_NhomKinh\WebNhomKinh\WebNhomKinh\WebNhomKinh\obj\Debug\WebNhomKinh.cspro
 D:\DATN_NhomKinh\WebNhomKinh\WebNhomKinh\WebNhomKinh\obj\Debug\WebNhomKinh.csproj.CopyComplete
 D:\DATN_NhomKinh\WebNhomKinh\WebNhomKinh\WebNhomKinh\obj\Debug\ShopBanDoTheThao.dll
 D:\DATN_NhomKinh\WebNhomKinh\WebNhomKinh\WebNhomKinh\obj\Debug\ShopBanDoTheThao.pdb
+D:\DATN_NhomKinh\WebNhomKinh\WebNhomKinh\WebNhomKinh\obj\Debug\WebNhomKinh.csprojAssemblyReference.cache

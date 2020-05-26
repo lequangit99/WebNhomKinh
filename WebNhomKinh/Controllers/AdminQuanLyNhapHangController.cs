@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
-using ShopBanDoTheThao.Models;
+using WebNhomKinh.Models;
 
-namespace ShopBanDoTheThao.Controllers
+namespace WebNhomKinh.Controllers
 {
     public class AdminQuanLyNhapHangController : Controller
     {
