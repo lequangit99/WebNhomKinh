@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2020-05-25T11:31:10.6379165Z"
+    }
+  },
+  "parameters": {
+    "resourceGroup": {
+      "Type": "resourceGroup",
+      "Value": "ASPdotNET-lq"
+    },
+    "subscriptionId": {
+      "Type": "subscription",
+      "Value": "0f0db720-95a7-44ea-a746-3cb6b31e1304"
+    }
+  }
+}

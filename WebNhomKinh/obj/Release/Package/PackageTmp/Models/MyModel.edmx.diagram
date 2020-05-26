@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="928d231f2bcd489d87ff5e3153b43377" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNhomKinhModel.CaiDat" Width="1.5" PointX="5.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.ChiTietHoaDonNhap" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.ChiTietHoaDon" Width="1.5" PointX="11.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.ChiTietSanPham" Width="1.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.ChiTietTaiKhoan" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.ChuyenMuc" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.CongTrinhNoiBat" Width="1.5" PointX="10.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.DKBanTin" Width="1.5" PointX="11.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.HangSanXuat" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.HoaDonNhap" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.HoaDon" Width="1.5" PointX="9" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.KhachHang" Width="1.5" PointX="11.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.LoaiTaiKhoan" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.NhaPhanPhois" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.QuangCao" Width="1.5" PointX="12.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.SanPham" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.Slide" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNhomKinhModel.TinTuc" Width="1.5" PointX="13.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_ChiTietHoaDonNhaps_HoaDonNhaps" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_ChiTietHoaDonNhaps_SanPhams" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_DetailBill_Bills" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_DetailBill_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_ChiTietSanPhams_NhaSanXuats" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_DetailProducts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_InformationAccounts_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_HoaDonNhaps_NhaPhanPhois" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_HoaDonNhaps_TaiKhoans" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.FK_Accounts_TypeAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNhomKinhModel.SanPhams_NhaPhanPhois" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

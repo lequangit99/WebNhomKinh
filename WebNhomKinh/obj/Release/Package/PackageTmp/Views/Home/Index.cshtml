@@ -1,0 +1,1115 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Linq
+@using ShopBanDoTheThao.Models
+@{
+    ViewBag.Title = "Trang chủ";
+    var danhSachSpMoi = (List<SanPham>)ViewData["SanPhamMoi"];
+    var danhSachSpDacSac = (List<SanPham>)ViewData["SanPhamDacSac"];
+
+    var danhSachChuyenMuc = (List<ChuyenMuc>)ViewData["DanhSachChuyenMuc"];
+    var congTrinhNoiBat = (List<CongTrinhNoiBat>)ViewData["CongTrinhNoiBat"];
+    var phuKien = ((List<SanPham>)ViewData["PhuKien"]).GroupBy(s => s.ChuyenMuc.TenChuyenMuc)
+        .Select(s => new
+        {
+            Ten = s.Key,
+            DanhSachSanPham = s.OrderBy(p => p.MaSanPham).Skip(0).Take(12).ToList()
+        })
+        .ToList();
+    var cuaBossDoor = (List<SanPham>)ViewData["CuaBossDoor"];
+    var cuaAutsDoor = (List<SanPham>)ViewData["CuaAutsDoor"];
+    var cuaKinhCuongLuc = (List<SanPham>)ViewData["CuaKinhCuongLuc"];
+    var cuaKinhNhom = (List<SanPham>)ViewData["CuaKinhNhom"];
+    var tinTuc = (List<TinTuc>)ViewData["TinMoiNhat"];
+    var sanPhamGiamGia = (List<SanPham>)ViewData["SanPhamGiamGia"];
+    ShopEntities shop = new ShopEntities();
+    var dsSlide = shop.Slides.ToList();
+    //double gia;
+    var quangCao = shop.QuangCaos.ToList();
+}
+<Style>
+    .add-to-links li a {
+        text-decoration: none;
+    }
+
+    .btn-cart {
+        width: 100%;
+    }
+</Style>
+<link href="~/Content/style.css" rel="stylesheet" />
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <div class="flexslider ma-nivoslider">
+                    <div class="ma-loading"></div>
+                    <div id="ma-inivoslider-banner7" class="slides">
+                        <img src="@dsSlide[0].LinkAnh" class="dn" alt="" title="#banner7-caption1" style="height: 530px;"/>
+                        <img src="@dsSlide[1].LinkAnh" class="dn" alt="" title="#banner7-caption2" style="height: 530px;"/>
+                        <img src="@dsSlide[2].LinkAnh" class="dn" alt="" title="#banner7-caption3" style="height: 530px;"/>
+                        <img src="@dsSlide[3].LinkAnh" class="dn" alt="" title="#banner7-caption4" style="height: 530px;"/>
+                        <img src="@dsSlide[4].LinkAnh" class="dn" alt="" title="#banner7-caption5" style="height: 530px;"/>
+                    </div>
+                    <div id="banner7-caption1" class="banner7-caption nivo-html-caption nivo-caption">
+                        <div class="timethai"></div>
+                        <div class="banner7-content slider-1">
+                            <div class="title-container">
+                                <h1 class="title1">@dsSlide[0].TieuDe1</h1>
+                                <h2 class="title2">@dsSlide[0].TieuDe2</h2>
+                            </div>
+                            <div class="banner7-des">
+                                <div class="des">
+                                    <h1>@dsSlide[0].MoTa1</h1>
+                                    <h2>@dsSlide[0].MoTa2</h2>
+                                    <div class="check-box">
+                                        <ul class="list-unstyled">
+                                            <li>@dsSlide[0].MoTa3</li>
+                                            <li>@dsSlide[0].MoTa4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="banner7-caption2" class="banner7-caption nivo-html-caption nivo-caption">
+                        <div class="timethai"></div>
+                        <div class="banner7-content slider-2">
+                            <div class="title-container">
+                                <h1 class="title1">@dsSlide[1].TieuDe1</h1>
+                                <h2 class="title2">@dsSlide[1].TieuDe2</h2>
+                            </div>
+                            <div class="banner7-des">
+                                <div class="des">
+                                    <h1>@dsSlide[0].MoTa1</h1>
+                                    <h2>@dsSlide[0].MoTa2</h2>
+                                    <div class="check-box">
+                                        <ul class="list-unstyled">
+                                            <li>@dsSlide[1].MoTa3</li>
+                                            <li>@dsSlide[1].MoTa4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="banner7-caption3" class="banner7-caption nivo-html-caption nivo-caption">
+                        <div class="timethai"></div>
+                        <div class="banner7-content slider-2">
+                            <div class="title-container">
+                                <h1 class="title1">@dsSlide[2].TieuDe1</h1>
+                                <h2 class="title2">@dsSlide[2].TieuDe2</h2>
+                            </div>
+                            <div class="banner7-des">
+                                <div class="des">
+                                    <h1>@dsSlide[0].MoTa1</h1>
+                                    <h2>@dsSlide[0].MoTa2</h2>
+                                    <div class="check-box">
+                                        <ul class="list-unstyled">
+                                            <li>@dsSlide[2].MoTa3</li>
+                                            <li>@dsSlide[2].MoTa4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="banner7-caption4" class="banner7-caption nivo-html-caption nivo-caption">
+                        <div class="timethai"></div>
+                        <div class="banner7-content slider-2">
+                            <div class="title-container">
+                                <h1 class="title1">@dsSlide[3].TieuDe1</h1>
+                                <h2 class="title2">@dsSlide[3].TieuDe2</h2>
+                            </div>
+                            <div class="banner7-des">
+                                <div class="des">
+                                    <h1>@dsSlide[0].MoTa1</h1>
+                                    <h2>@dsSlide[0].MoTa2</h2>
+                                    <div class="check-box">
+                                        <ul class="list-unstyled">
+                                            <li>@dsSlide[3].MoTa3</li>
+                                            <li>@dsSlide[3].MoTa4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="banner7-caption5" class="banner7-caption nivo-html-caption nivo-caption">
+                        <div class="timethai"></div>
+                        <div class="banner7-content slider-2">
+                            <div class="title-container">
+                                <h1 class="title1">@dsSlide[4].TieuDe1</h1>
+                                <h2 class="title2">@dsSlide[4].TieuDe2</h2>
+                            </div>
+                            <div class="banner7-des">
+                                <div class="des">
+                                    <h1>@dsSlide[0].MoTa1</h1>
+                                    <h2>@dsSlide[0].MoTa2</h2>
+                                    <div class="check-box">
+                                        <ul class="list-unstyled">
+                                            <li>@dsSlide[4].MoTa3</li>
+                                            <li>@dsSlide[4].MoTa4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!-- /.flexslider -->
+            </div>
+        </div>
+        <div class="row">
+            @*<div class="col-sm-3">
+                <div class="banner-left">
+                    <a href="#"><img src="/Images/QuangCao/ads-01.jpg" alt=""></a>
+                    <div class="banner-content">
+                        <h1>Giảm giá từ</h1>
+                        <h2>20%</h2>
+                        <p>trên tất cả sản phẩm</p>
+                        <a href="#">mua ngay</a>
+                    </div>
+                </div>
+            </div>*@
+            @*<div class="col-sm-5">
+                <div class="banner banner-double"><a href="#"><img alt="" src="/Images/QuangCao/ads-02.jpg"></a></div>
+                <div class="banner banner-double"><a href="#"><img alt="" src="/Images/QuangCao/ads-03.jpg"></a></div>
+            </div>
+            <div class="col-sm-4">
+                <div class="banner"><a href="#"><img alt="" src="/Images/QuangCao/ads-04.jpg"></a></div>
+            </div>*@
+        </div><!-- /advertisement -->
+        <div class="row">
+            <div class="col-sm-3 col-left">
+                @Html.Partial("XemNhieuNhat")
+                @Html.Partial("TinMoiNhat")
+
+                @*<div class="banner-left">
+                    <a href="#"><img src="/Images/QuangCao/2_142085.jpg" alt="" style="height: 450px;width: 100%"></a>
+                    <div class="banner-content">
+                        <h3>Chất lượng cao</h3>
+                        <h2>Uy tín 100%</h2>
+                        <p style="color: blue">Lắp đặt chuyên nghiệp</p>
+                        <a href="#">mua ngay</a>
+                    </div>
+                </div>
+
+                <div class="banner-left">
+                    <a href="#"><img src="/Images/QuangCao/ads12.jpg" alt="" style="height: 450px;width: 100%"></a>
+                    <div class="banner-content">
+                        <h3 style="color: black">Cửa Thiên Phú</h3>
+                        <h2>100%</h2>
+                        <p>Uy tín-chất lượng</p>
+                        <a href="#">mua ngay</a>
+                    </div>
+                </div>
+                <div class="banner-left">
+                    <a href="#"><img src="/Images/QuangCao/ads-011.jpg" alt=""></a>
+                    <div class="banner-content">
+                        <h1>Giảm giá từ</h1>
+                        <h2>20%</h2>
+                        <p>trên tất cả sản phẩm</p>
+                        <a href="#">mua ngay</a>
+                    </div>
+                </div>*@
+            </div><!-- /.col-left -->
+            <div class="col-sm-9 col-right">
+                <!-- công trình -->
+                <div class="featuredproductslider-container">
+                    <div class="title-group1">
+                        <h2>Các công trình nổi bật</h2>
+                    </div>
+                    <div id="featured-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (var item in congTrinhNoiBat)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'>
+                                                    <span>new</span>
+                                                </div>
+                                            </div>
+                                            <a href="/CongTrinh/ChiTietCongTrinh/@item.MaCT" title="Nunc facilisis" class="product-image">
+                                                <img src="@item.AnhDaiDien" alt="Công trình 1"/>
+                                            </a>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="/CongTrinh/ChiTietCongTrinh/@item.MaCT" title="Nunc facilisis">@item.TenCT</a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div><!-- /.công trình -->
+                <div class="banner">
+                    <a href="@quangCao[0].LinkQuangCao"><img alt="" src="@quangCao[0].AnhDaiDien" style="width: 100%; height: 200px"></a>
+                </div>
+                <!--cửa bossdoor-->
+                <div class="newproductslider-container">
+                    <div class="title-group1"><h2>Cửa cuốn BossDoor</h2></div>
+                    <div id="new-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (var item in cuaBossDoor)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'><span>Mới</span></div>
+                                            </div>
+                                            <a href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" title="@item.TenSanPham" class="product-image" onclick="TangLuot(@item.MaSanPham)">
+                                                <img src="@item.AnhDaiDien" alt="@item.TenSanPham" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = item.MaSanPham})" title="@item.TenSanPham" onclick="TangLuot(@item.MaSanPham)">
+                                                    @(item.TenSanPham.Length > 20 ? item.TenSanPham.Substring(0, 20) : item.TenSanPham)
+                                                </a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if (item.GiaGiam > 0)
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá : </span>
+                                                        <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá NT: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">&nbsp;</span>
+                                                        <span class="price">&nbsp;</span>
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:67%"></div>
+                                                </div>
+                                                <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--cửa autsdoor-->
+                <div class="newproductslider-container">
+                    <div class="title-group1"><h2>Cửa cuốn AustDoor</h2></div>
+                    <div id="new-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (var item in cuaAutsDoor)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'><span>Mới</span></div>
+                                            </div>
+                                            <a href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" title="@item.TenSanPham" class="product-image" onclick="TangLuot(@item.MaSanPham)">
+                                                <img src="@item.AnhDaiDien" alt="@item.TenSanPham" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = item.MaSanPham})" title="@item.TenSanPham" onclick="TangLuot(@item.MaSanPham)">
+                                                    @(item.TenSanPham.Length > 20 ? item.TenSanPham.Substring(0, 20) : item.TenSanPham)
+                                                </a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if (item.GiaGiam > 0)
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá : </span>
+                                                        <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá NT: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">&nbsp;</span>
+                                                        <span class="price">&nbsp;</span>
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:67%"></div>
+                                                </div>
+                                                <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--cửa kính nhôm-->
+                <div class="newproductslider-container">
+                    <div class="title-group1"><h2>Cửa Kính Nhôm</h2></div>
+                    <div id="new-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (var item in cuaKinhNhom)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'><span>Mới</span></div>
+                                            </div>
+                                            <a href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" title="@item.TenSanPham" class="product-image" onclick="TangLuot(@item.MaSanPham)">
+                                                <img src="@item.AnhDaiDien" alt="@item.TenSanPham" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = item.MaSanPham})" title="@item.TenSanPham" onclick="TangLuot(@item.MaSanPham)">
+                                                    @(item.TenSanPham.Length > 20 ? item.TenSanPham.Substring(0, 20) : item.TenSanPham)
+                                                </a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if (item.GiaGiam > 0)
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá : </span>
+                                                        <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá NT: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">&nbsp;</span>
+                                                        <span class="price">&nbsp;</span>
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:67%"></div>
+                                                </div>
+                                                <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--cửa kính cường lực-->
+                <div class="newproductslider-container">
+                    <div class="title-group1"><h2>Cửa Kính Cường Lực</h2></div>
+                    <div id="new-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (var item in cuaKinhCuongLuc)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'><span>Mới</span></div>
+                                            </div>
+                                            <a href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" title="@item.TenSanPham" class="product-image" onclick="TangLuot(@item.MaSanPham)">
+                                                <img src="@item.AnhDaiDien" alt="@item.TenSanPham" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = item.MaSanPham})" title="@item.TenSanPham" onclick="TangLuot(@item.MaSanPham)">
+                                                    @(item.TenSanPham.Length > 20 ? item.TenSanPham.Substring(0, 20) : item.TenSanPham)
+                                                </a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if (item.GiaGiam > 0)
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá : </span>
+                                                        <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá NT: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">&nbsp;</span>
+                                                        <span class="price">&nbsp;</span>
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:67%"></div>
+                                                </div>
+                                                <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                @foreach (var nhomPhuKien in phuKien)
+                {
+                    <div class="newproductslider-container">
+                        <div class="title-group1">
+                            <h2>@(new CultureInfo("en-US", false).TextInfo.ToLower(nhomPhuKien.Ten))</h2>
+                        </div>
+                        <div id="new-products" class="owl-container">
+                            <div class="owl">
+                                @foreach (var phukien in nhomPhuKien.DanhSachSanPham)
+                                {
+                                    <div class='productslider-item item'>
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <div class="product_icon">
+                                                    <div class='new-icon'>
+                                                        <span>Mới</span>
+                                                    </div>
+                                                </div>
+                                                <a href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=phukien.MaSanPham})" title="@phukien.TenSanPham" class="product-image" onclick="TangLuot(@phukien.MaSanPham)">
+                                                    <img src="@phukien.AnhDaiDien" alt="@phukien.TenSanPham" />
+                                                </a>
+                                                <div class="box-hover">
+                                                    <ul class="add-to-links">
+                                                        <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                        <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@phukien.MaSanPham)">Thêm vào giỏ</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = phukien.MaSanPham})" title="@phukien.TenSanPham" onclick="TangLuot(@phukien.MaSanPham)">
+                                                        @(phukien.TenSanPham.Length > 20 ? phukien.TenSanPham.Substring(0, 20) : phukien.TenSanPham)
+                                                    </a>
+                                                </h2>
+                                                <div class="price-box">
+                                                    @if (phukien.GiaGiam > 0)
+                                                    {
+                                                        <p class="special-price">
+                                                            <span class="price-label">Giá : </span>
+                                                            <span class="price">@double.Parse(phukien.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                        </p>
+                                                        <p class="old-price">
+                                                            <span class="price-label">Giá NY: </span>
+                                                            <span class="price">@double.Parse(phukien.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="special-price">
+                                                            <span class="price-label">Giá NT: </span>
+                                                            <span class="price">@double.Parse(phukien.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                        </p>
+                                                        <p class="old-price">
+                                                            <span class="price-label">&nbsp;</span>
+                                                            <span class="price">&nbsp;</span>
+                                                        </p>
+                                                    }
+                                                </div>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div class="rating" style="width: 67%"></div>
+                                                    </div>
+                                                    <span class="amount"><a href="#">@phukien.LuotXem Lượt xem</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="featuredproductslider-container">
+                    <div class="title-group1">
+                        <h2>Sản phẩm đặc sắc</h2>
+                    </div>
+                    <div id="featured-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (SanPham item in danhSachSpDacSac)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'>
+                                                    <span>Mới</span>
+                                                </div>
+                                                @if (item.GiaGiam > 0)
+                                                {
+                                                    <div class="sale-icon">
+                                                        <span>@Math.Round(double.Parse((100 - ((item.GiaGiam * 100) / item.Gia)).ToString())) %</span>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <a href="/QuanLySanPham/ChiTietSanPham/@item.MaSanPham" title="@item.TenSanPham" class="product-image" onclick="TangLuot(@item.MaSanPham)">
+                                                <img src="@Url.Content(item.AnhDaiDien)" alt="@item.TenSanPham" style="height: 200px;" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="des-container">
+                                            <h2 class="product-name">
+                                                <a href="/QuanLySanPham/ChiTietSanPham/@item.MaSanPham" title="@item.TenSanPham" onclick="TangLuot(@item.MaSanPham)">
+                                                    @if (item.TenSanPham.Length > 20)
+                                                    {
+                                                        @item.TenSanPham.Substring(0, 20)
+                                                        ;
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.TenSanPham
+                                                        ;
+                                                    }
+                                                </a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if (item.GiaGiam > 0)
+                                                {
+
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá : </span>
+                                                        <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="special-price">
+                                                        <span class="price-label">Giá NY: </span>
+                                                        <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                    </p>
+                                                    <p class="old-price">
+                                                        <span class="price-label">&nbsp;</span>
+                                                        <span class="price">&nbsp;</span>
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="ratings">
+                                                @*<div class="rating-box">
+                                                    <div class="rating" style="width: 67%"></div>
+                                                </div>*@
+                                                <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+
+                                                @*<a href="javascript:;" class="btn btn-danger btn-cart" onclick="ThemGioHang(@item.MaSanPham)">Thêm vào giỏ</a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div><!-- /.featuredproductslider-container -->
+                @*<div class="banner">
+                    <a href="@quangCao[0].LinkQuangCao"><img alt="" src="@quangCao[0].AnhDaiDien" style="width: 100%; height: 200px"></a>
+                </div>*@
+                <div class="newproductslider-container">
+                    <div class="title-group1">
+                        <h2>Hàng mới về</h2>
+                    </div>
+                    <div id="new-products" class="owl-container">
+                        <div class="owl">
+                            @foreach (SanPham sp_moi in danhSachSpMoi)
+                            {
+                                <div class='productslider-item item'>
+                                    <div class="item-inner">
+                                        <div class="images-container">
+                                            <div class="product_icon">
+                                                <div class='new-icon'>
+                                                    <span>Mới</span>
+                                                </div>
+                                                @if (sp_moi.GiaGiam > 0)
+                                                {
+                                                    <div class="sale-icon">
+                                                        <span>@Math.Round(double.Parse((100 - ((sp_moi.GiaGiam * 100) / sp_moi.Gia)).ToString())) %</span>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <a href="/QuanLySanPham/ChiTietSanPham/@sp_moi.MaSanPham" title="@sp_moi.TenSanPham" onclick="TangLuot(@sp_moi.MaSanPham)" class="product-image">
+                                                <img src="@sp_moi.AnhDaiDien" alt="@sp_moi.TenSanPham" style="height: 200px" />
+                                            </a>
+                                            <div class="box-hover">
+                                                <ul class="add-to-links">
+                                                    <li><a href="#" class="link-quickview">Xem nhanh</a></li>
+                                                    <li><a href="javascript:void()" class="link-cart" onclick="ThemGioHang(@sp_moi.MaSanPham)">Thêm vào giỏ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="des-container">
+                                        <h2 class="product-name">
+                                            <a href="/QuanLySanPham/ChiTietSanPham/@sp_moi.MaSanPham" onclick="TangLuot(@sp_moi.MaSanPham)" title="@sp_moi.TenSanPham">
+                                                @if (sp_moi.TenSanPham.Length > 20)
+                                                {
+                                                    @sp_moi.TenSanPham.Substring(0, 20)
+                                                    ;
+                                                }
+                                                else
+                                                {
+                                                    @sp_moi.TenSanPham
+                                                    ;
+                                                }
+                                            </a>
+                                        </h2>
+                                        <div class="price-box">
+                                            @if (sp_moi.GiaGiam > 0)
+                                            {
+                                                <p class="special-price">
+                                                    <span class="price-label">Giá : </span>
+                                                    <span class="price">@double.Parse(sp_moi.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                                <p class="old-price">
+                                                    <span class="price-label">Giá NY: </span>
+                                                    <span class="price">@double.Parse(sp_moi.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="special-price">
+                                                    <span class="price-label">Giá NT: </span>
+                                                    <span class="price">@double.Parse(sp_moi.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                                <p class="old-price">
+                                                    <span class="price-label">&nbsp;</span>
+                                                    <span class="price">&nbsp;</span>
+                                                </p>
+                                            }
+                                        </div>
+                                        <div class="ratings">
+                                            @*<div class="rating-box">
+                                                <div class="rating" style="width: 67%"></div>
+                                            </div>*@
+                                            <span class="amount"><a href="#">@sp_moi.LuotXem Lượt xem</a></span>
+                                            @*<a href="javascript:;" class="btn btn-danger btn-cart" onclick="ThemGioHang(@sp_moi.MaSanPham)">Thêm vào giỏ</a>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div><!-- /.newproductslider-container -->
+                <div class="row">
+                    <div class="col-smc-7">
+                        <div class="banner">
+                            <a href="@quangCao[1].LinkQuangCao"><img alt="" src="@quangCao[1].AnhDaiDien" style="height: 200px; width: 100%;"></a>
+                        </div>
+                    </div>
+                    <div class="col-smc-5">
+                        <div class="banner">
+                            <a href="@quangCao[2].LinkQuangCao"><img alt="" src="@quangCao[2].AnhDaiDien" style="height: 200px; width: 100%;"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="title-group"><h2>Đặc sắc</h2></div>
+                        <div class="product-list">
+                            @foreach (var item in danhSachSpDacSac.Take(3).ToList())
+                            {
+                                <div class="products-grid">
+                                    <div class="images-container">
+                                        <a class="product-image" title="@item.TenSanPham" href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" onclick="TangLuot(@item.MaSanPham)"><img alt="@item.TenSanPham" src="@item.AnhDaiDien"></a>
+                                    </div>
+                                    <div class="des-container">
+                                        <h2 class="product-name">
+                                            <a title="@item.TenSanPham" href="@Url.Action("ChiTietSanPham", "QuanLySanPham", new {id = item.MaSanPham})" onclick="TangLuot(@item.MaSanPham)">
+                                                @if (item.TenSanPham.Length > 20)
+                                                {
+                                                    @item.TenSanPham.Substring(0, 20)
+                                                }
+                                                else
+                                                {
+                                                    @item.TenSanPham
+                                                }
+                                            </a>
+                                        </h2>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <div style="width: 67%" class="rating"></div>
+                                            </div>
+                                            <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                        </div>
+                                        <div class="price-box">
+                                            @if (item.GiaGiam > 0)
+                                            {
+                                                <p class="special-price">
+                                                    <span class="price-label">Giá : </span>
+                                                    <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                                <p class="old-price">
+                                                    <span class="price-label">Giá NY: </span>
+                                                    <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="special-price">
+                                                    <span class="price-label">Giá NT: </span>
+                                                    <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0")&nbsp;VNĐ</span>
+                                                </p>
+                                                <p class="old-price">
+                                                    <span class="price-label">&nbsp;</span>
+                                                    <span class="price">&nbsp;</span>
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title-group"><h2>Tin tức</h2></div>
+                        <div class="product-list">
+                            @foreach (var item in tinTuc)
+                            {
+                                <div class="products-grid">
+                                    <div class="images-container">
+                                        <a class="product-image" title="@item.TieuDe" href="@Url.Action("ChiTietTinTuc","TinTuc", new {id=item.MaTinTuc})"><img alt="@item.TieuDe" src="@item.AnhDaiDien"></a>
+                                    </div>
+                                    <div class="des-container">
+                                        <h2 class="product-name">
+                                            <a title="Accumsan elit " href="@Url.Action("ChiTietTinTuc","TinTuc", new {id=item.MaTinTuc})">@item.TieuDe</a>
+                                        </h2>
+                                    </div>
+                                </div>
+                            }
+                        </div><!-- /.product-list -->
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title-group"><h2>Giảm giá</h2></div>
+                        <div class="product-list">
+                            @foreach (var item in sanPhamGiamGia)
+                            {
+                                <div class="products-grid">
+                                    <div class="images-container">
+                                        <a class="product-image" title="@item.TenSanPham" href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" onclick="TangLuot(@item.MaSanPham)"><img alt="@item.TenSanPham" src="@item.AnhDaiDien"></a>
+                                    </div>
+                                    <div class="des-container">
+                                        <h2 class="product-name">
+                                            <a title="@item.TenSanPham" href="@Url.Action("ChiTietSanPham","QuanLySanPham", new {id=item.MaSanPham})" onclick="TangLuot(@item.MaSanPham)">@item.TenSanPham</a>
+                                        </h2>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <div style="width: 67%" class="rating"></div>
+                                            </div>
+                                            <span class="amount"><a href="#">@item.LuotXem Lượt xem</a></span>
+                                        </div>
+                                        <div class="price-box">
+                                            <p class="special-price">
+                                                <span class="price">@double.Parse(item.GiaGiam.ToString()).ToString("#,##0") VND</span>
+                                            </p>
+                                            <p class="old-price">
+                                                <span class="price">@double.Parse(item.Gia.ToString()).ToString("#,##0") VND</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
+                        </div><!-- /.product-list -->
+                    </div>
+                </div>
+            </div><!-- /.col-right -->
+        </div>
+    </div>
+</div><!-- /.main -->
+@Html.Partial("ChuyenMucKhac")
+@Html.Partial("HangSXPhoBien")
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>*@
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.nivo.slider.pack.js"></script>
+<script src="~/Scripts/owl.carousel.min.js"></script>
+<script src="~/Scripts/main.js"></script>
+<script type="text/javascript">
+    function ThemGioHang(masp) {
+        $.ajax({
+            url: '/GioHang/ThemVaoGioHang/?id=' + masp + '&soLuong=1',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var json = JSON.parse(data);
+                alert(json);
+                window.location.reload();
+            },
+            error: function (err) {
+                alert("Đã xảy ra lỗi");
+            }
+        });
+    };
+
+    $(window).load(function () {
+        $(document).off('mouseenter').on('mouseenter', '.pos-slideshow', function (e) {
+            $('.ma-banner7-container .timethai').addClass('pos_hover');
+        });
+        $(document).off('mouseleave').on('mouseleave', '.pos-slideshow', function (e) {
+            $('.ma-banner7-container .timethai').removeClass('pos_hover');
+        });
+    });
+    $(window).load(function () {
+        $(".mega-menu-category").css('display', 'block');
+        $('#ma-inivoslider-banner7').nivoSlider({
+            effect: 'random',
+            slices: 15,
+            boxCols: 8,
+            boxRows: 4,
+            animSpeed: 1000,
+            pauseTime: 6000,
+            startSlide: 0,
+            controlNav: false,
+            controlNavThumbs: false,
+            pauseOnHover: true,
+            manualAdvance: false,
+            prevText: 'Prev',
+            nextText: 'Next',
+            afterLoad: function () {
+            },
+            beforeChange: function () {
+            },
+            afterChange: function () {
+            }
+        });
+    });
+    $(document).ready(function () {
+        /* timely-owl */
+        $("#timely-owl .owl").owlCarousel({
+            autoPlay: true,
+            items: 1,
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [991, 1],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 1000,
+            paginationSpeed: 1000,
+            rewindSpeed: 1000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+        /* special-offer slider */
+        $("#special-offer .owl").owlCarousel({
+            autoPlay: true,
+            items: 1,
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [991, 1],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 3000,
+            paginationSpeed: 3000,
+            rewindSpeed: 3000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+        /* latest-news slider */
+        $("#latest-news .owl").owlCarousel({
+            autoPlay: true,
+            items: 1,
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [991, 1],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 1000,
+            paginationSpeed: 1000,
+            rewindSpeed: 1000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+        /* clients-say slider */
+        $("#clients-say .owl").owlCarousel({
+            autoPlay: true,
+            items: 1,
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [991, 1],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 3000,
+            paginationSpeed: 3000,
+            rewindSpeed: 3000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+        /* featured-products slider */
+        $("#featured-products .owl").owlCarousel({
+            autoPlay: true,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [991, 2],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 3000,
+            paginationSpeed: 3000,
+            rewindSpeed: 3000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+        /* new-products slider */
+        $("#new-products .owl").owlCarousel({
+            autoPlay: true,
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [991, 2],
+            itemsTablet: [767, 2],
+            itemsMobile: [480, 1],
+            slideSpeed: 3000,
+            paginationSpeed: 3000,
+            rewindSpeed: 3000,
+            navigation: true,
+            stopOnHover: true,
+            pagination: false,
+            scrollPerPage: true,
+        });
+    });
+</script>
+
+<!-- Hot Deals Timer 1-->
+<script type="text/javascript">
+    var dthen1 = new Date("12/25/33 11:59:00 PM");
+    start = "08/04/15 03:02:11 AM";
+    start_date = Date.parse(start);
+    var dnow1 = new Date(start_date);
+    if (CountStepper > 0)
+        ddiff = new Date((dnow1) - (dthen1));
+    else
+        ddiff = new Date((dthen1) - (dnow1));
+    gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+
+    var iid1 = "countbox_1";
+    CountBack_slider(gsecs1, "countbox_1", 1);
+</script>
+<!-- Hot Deals Timer 2-->
+<script type="text/javascript">
+    var dthen2 = new Date("05/21/26 11:59:00 PM");
+    start = "08/04/15 03:02:11 AM";
+    start_date = Date.parse(start);
+    var dnow2 = new Date(start_date);
+    if (CountStepper > 0)
+        ddiff = new Date((dnow2) - (dthen2));
+    else
+        ddiff = new Date((dthen2) - (dnow2));
+    gsecs2 = Math.floor(ddiff.valueOf() / 1000);
+
+    var iid2 = "countbox_2";
+    CountBack_slider(gsecs2, "countbox_2", 2);
+</script>
+<!-- Hot Deals Timer 3-->
+<script type="text/javascript">
+    var dthen3 = new Date("05/21/33 11:59:00 PM");
+    start = "08/04/15 03:02:11 AM";
+    start_date = Date.parse(start);
+    var dnow3 = new Date(start_date);
+    if (CountStepper > 0)
+        ddiff = new Date((dnow3) - (dthen3));
+    else
+        ddiff = new Date((dthen3) - (dnow3));
+    gsecs3 = Math.floor(ddiff.valueOf() / 1000);
+
+    var iid3 = "countbox_3";
+    CountBack_slider(gsecs3, "countbox_3", 3);
+
+    function TangLuot(id) {
+
+        $.ajax({
+            url: '/QuanLySanPham/TangLuotXem/' + id + '',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+
+            },
+            error: function (err) {
+
+            }
+        });
+    };
+
+</script>
